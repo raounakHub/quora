@@ -1,0 +1,6 @@
+<% @questions.each do |ques| %>
+    <div>
+        <h3><%= link_to ques.title, question_path(ques) %></h3>
+        <p><%= ques.body %></p>
+    </div>
+<% end %>

@@ -12,13 +12,10 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <header>
-      Quora
-    </header>
-    <p><%= current_user.email %></p>
-    <%= yield %>
-    <footer>
-      Contact US
-    </footer>
+    <%= render partial: '/header' %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <%= render partial: '/footer' %>
   </body>
 </html>
