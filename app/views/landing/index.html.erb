@@ -2,5 +2,10 @@
     <div>
         <h3><%= link_to ques.title, question_path(ques) %></h3>
         <p><%= ques.body %></p>
+        <div class="container" style="margin-left: 10px">
+            <% ques.answers.each do |ans| %>
+                <p><%= ans.content %></p>
+            <% end %>
+        </div>
     </div>
 <% end %>

@@ -10,5 +10,12 @@
   <%= @question.body %>
 </p>
 
+<%= link_to 'Delete', "/questions/#{@question.id}", method: :delete %> |
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
+
+<%= form_with model: Answer, local: true, method: :post do |f| %>
+  <%= f.hidden_field :question_id, value: @question.id %>
+  Content: <%= f.text_field :content %><br />
+  <%= f.submit 'Submit', class: "btn btn-primary" %>
+<% end %>

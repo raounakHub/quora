@@ -1,5 +1,5 @@
 class LandingController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.joins(:answers).all
   end
 end
