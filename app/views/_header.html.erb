@@ -7,6 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <% if current_user  %>
+                <li><p class="nav-link"><%= current_user.email %></p></li>
                 <li>
                     <%= link_to 'Ask Question', new_question_path, class: 'nav-link' %>
                 </li>
@@ -22,5 +23,3 @@
     </div>
     </nav>
 </header>
-
-    <%# <p><%= current_user.email %></p>

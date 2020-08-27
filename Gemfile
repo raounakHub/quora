@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap'
 gem 'devise'
 gem 'jquery-rails'
+gem 'carrierwave', '~> 2.0'

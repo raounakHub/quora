@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :verify_authorization, only: [:destroy, :edit, :update]
+  prepend_before_action :verify_authentication, only: [:new, :create, :destroy, :edit, :update]
 
   # GET /answers
   # GET /answers.json
@@ -71,4 +73,8 @@ class AnswersController < ApplicationController
     def answer_params
       params.require(:answer).permit(:content, :question_id)
     end
+  
+  def verify_authorization
+    authroized(resource: @answer)
+  end
 end

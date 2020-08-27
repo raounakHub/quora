@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :verify_authorization, only: [:destroy, :edit, :update]
+  prepend_before_action :verify_authentication, only: [:new, :create, :destroy, :edit, :update]
 
   # GET /questions
   # GET /questions.json
@@ -24,7 +26,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @question = Question.new(param)
 
     respond_to do |format|
       if @question.save
@@ -62,13 +64,18 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def question_params
-      params.require(:question).permit(:title, :body)
-    end
+  # Only allow a list of trusted parameters through.
+  def question_params
+    params.require(:question).permit(:title, :body).merge({user_id: current_user.id})
+  end
+
+  def verify_authorization
+    authroized(resource: @question)
+  end
 end
